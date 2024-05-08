@@ -1,4 +1,5 @@
-package buscadordecep.models;
+package buscadordecep.functions;
+import buscadordecep.models.EnderecoRecord;
 import com.google.gson.Gson;
 import java.net.URI;
 import java.net.http.HttpClient;

@@ -1,6 +1,6 @@
 package buscadordecep.main;
 import buscadordecep.functions.GeradorDeArquivo;
-import buscadordecep.models.ConsultaCep;
+import buscadordecep.functions.ConsultaCep;
 import buscadordecep.models.Endereco;
 import buscadordecep.models.EnderecoRecord;
 import java.io.IOException;
