@@ -3,10 +3,7 @@ import buscadordecep.functions.GeradorDeArquivo;
 import buscadordecep.models.ConsultaCep;
 import buscadordecep.models.Endereco;
 import buscadordecep.models.EnderecoRecord;
-
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,6 +15,11 @@ public class Main {
         String option = "";
         ConsultaCep consultaCep = new ConsultaCep();
         List<Endereco>historicoConsultas = new ArrayList<>();
+
+        System.out.println("""
+                *****************************************
+                   -- Bem vindo ao consultor de CEP --   
+                """);
 
         while (option != "sair") {
 
@@ -62,13 +64,9 @@ public class Main {
 
     private static String mensagemMenu() {
         String mensagem ="""
-                    *****************************************
-                       -- Bem vindo ao consultor de CEP --   
-                       
                        Digite como deseja progredir:
                        1 - Consultar um CEP
                        2 - Sair
-
                     """;
         return mensagem;
     }
@@ -84,7 +82,7 @@ public class Main {
                        --      Pesquisa concluida!     --   
                        
                       Não se esqueça de conferir o arquivo
-                      que foi gerado, com todas os resultados 
+                      que foi gerado com todos os resultados 
                       de suas pesquisas.
                       
                     *****************************************
