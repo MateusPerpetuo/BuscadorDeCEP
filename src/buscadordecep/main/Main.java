@@ -21,7 +21,7 @@ public class Main {
                    -- Bem vindo ao consultor de CEP --   
                 """);
 
-        while (option != "sair") {
+        while (!option.equals("sair")) {
 
             System.out.println(mensagemMenu());
             option = scan.nextLine();
@@ -32,18 +32,28 @@ public class Main {
                         System.out.println(mensagemConsulta());
                         String cepConsulta = scan.nextLine();
 
-                        EnderecoRecord novoEnderecoRecord = consultaCep.buscarEndereco(cepConsulta);
+                        while (true) {
+                            if (consultaCep.validarCep(cepConsulta)){
 
-                        Endereco endereco = new Endereco(novoEnderecoRecord);
-                        System.out.println(endereco.toString());
+                                EnderecoRecord novoEnderecoRecord = consultaCep.buscarEndereco(cepConsulta);
+                                Endereco endereco = new Endereco(novoEnderecoRecord);
+                                System.out.println(endereco.toString());
+                                historicoConsultas.add(endereco);
+                                break;
 
-                        historicoConsultas.add(endereco);
+                            } else {
+                                System.out.println("Cep inválido!");
+                                System.out.println(regrasCep());
+                                cepConsulta = scan.nextLine();
+                            }
+                        }
+
 
                     } catch (RuntimeException  e) {
                         System.out.println(e.getMessage());
                         System.out.println("Finalizando a aplicação");
-                    }
-                    break;
+                    }break;
+
                 case "2":
                     System.out.println(mensagemSaida());
                     option = "sair";
@@ -90,4 +100,11 @@ public class Main {
         return mensagem;
     }
 
+    private static String regrasCep(){
+        String mensagem = """
+                - 0 CEP deve conter 8 dígitos.
+                - Somente números (sem espaço ou traço).
+                """;
+        return mensagem;
+    }
 }

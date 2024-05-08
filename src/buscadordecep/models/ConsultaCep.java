@@ -23,5 +23,12 @@ public class ConsultaCep {
         }
     }
 
-
+    public boolean validarCep(String cep){
+        boolean formatoValido = cep.matches("^[0-9]{8}$");
+        if (formatoValido){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
