@@ -23,8 +23,10 @@ Com essa API, os usuários podem buscar detalhes sobre um determinado CEP.
 
 ![image](https://github.com/MateusPerpetuo/BuscadorDeCEP/assets/129229556/96bd95ba-2601-463a-bec1-e870c2cb89e1)
 
-![image](https://github.com/MateusPerpetuo/BuscadorDeCEP/assets/129229556/2db7ef20-bf87-436f-ab72-66115c165521)
+.txt gerado
 
+
+![image](https://github.com/MateusPerpetuo/BuscadorDeCEP/assets/129229556/3ad5589f-2b8f-498f-bffa-d18e8a9c45a7)
 
 
 
