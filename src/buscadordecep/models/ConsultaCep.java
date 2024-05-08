@@ -6,7 +6,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class ConsultaCep {
-    public Endereco buscarEndereco(String cep){
+    public EnderecoRecord buscarEndereco(String cep){
 
         URI enrereco = URI.create("https://viacep.com.br/ws/" + cep + "/json");
 
@@ -20,7 +20,7 @@ public class ConsultaCep {
         try {
             HttpResponse<String> response = client
                     .send(request, HttpResponse.BodyHandlers.ofString());
-            return new Gson().fromJson(response.body(), Endereco.class);
+            return new Gson().fromJson(response.body(), EnderecoRecord.class);
 
         } catch (Exception e) {
             throw new RuntimeException("Não consegui obter o endereço aparti desse CEP.");

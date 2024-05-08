@@ -2,21 +2,21 @@ package buscadordecep.main;
 import buscadordecep.functions.GeradorDeArquivo;
 import buscadordecep.models.ConsultaCep;
 import buscadordecep.models.Endereco;
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import buscadordecep.models.EnderecoRecord;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         Scanner scan = new Scanner(System.in);
         String option = "";
         ConsultaCep consultaCep = new ConsultaCep();
-        var gerador = new GeradorDeArquivo();
         List<Endereco>historicoConsultas = new ArrayList<>();
 
         while (option != "sair") {
@@ -27,22 +27,37 @@ public class Main {
             switch (option){
                 case "1":
                     try {
-                        Endereco novoEndereco = consultaCep.buscarEndereco("01001000");
-                        gerador.salvarJson(novoEndereco);
+                        System.out.println(mensagemConsulta());
+                        String cepConsulta = scan.nextLine();
 
-                    } catch (RuntimeException | IOException e) {
+                        EnderecoRecord novoEnderecoRecord = consultaCep.buscarEndereco(cepConsulta);
+
+                        Endereco endereco = new Endereco(novoEnderecoRecord);
+                        System.out.println(endereco.toString());
+
+                        historicoConsultas.add(endereco);
+
+                    } catch (RuntimeException  e) {
                         System.out.println(e.getMessage());
                         System.out.println("Finalizando a aplicação");
                     }
                     break;
-
                 case "2":
-                    option = "sair";break;
-
+                    System.out.println(mensagemSaida());
+                    option = "sair";
+                    break;
                 default:
                     System.out.println("Opção inválida!");
             }
         }
+
+        try {
+            var gerador = new GeradorDeArquivo();
+            gerador.salvarJson(historicoConsultas);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private static String mensagemMenu() {
@@ -62,4 +77,19 @@ public class Main {
         String mensagem = "Digite o CEP que deseja consultar: ";
         return mensagem;
     }
+
+    private static String mensagemSaida() {
+        String mensagem ="""
+                    
+                       --      Pesquisa concluida!     --   
+                       
+                      Não se esqueça de conferir o arquivo
+                      que foi gerado, com todas os resultados 
+                      de suas pesquisas.
+                      
+                    *****************************************
+                    """;
+        return mensagem;
+    }
+
 }
