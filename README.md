@@ -1,6 +1,6 @@
 # Projeto de estudo implementando uma Web API para Consulta de CEP
 
-Este projeto é utilizado para aplicar e consolidar os estudos relacionados à implementação de uma Web API, no estudo em questão foi usando a API ![ViaCep](https://viacep.com.br/). 
+Este projeto é utilizado para aplicar e consolidar os estudos relacionados à implementação de uma Web API, no estudo em questão foi usando a API [ViaCep](https://viacep.com.br/). 
 
 Com essa API, os usuários podem buscar detalhes sobre um determinado CEP.
 
